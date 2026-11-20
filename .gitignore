@@ -1,0 +1,5 @@
+# The tool's own state beside the script (login ids, the share list, an index): kept on this machine alone.
+state.json
+# Real data kept on this machine alone: never committed.
+.secrets/
+node_modules/
