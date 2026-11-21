@@ -265,7 +265,11 @@ Each of these works without the others.
 - **[handoff-guard](https://github.com/gjovanov/handoff-guard)** keeps each session's handoff current: before `/exit`,
   `/clear` and `/resume`, near a usage limit, and when a restart tool asks. A pack is built around the newest handoff a
   session wrote, so with handoff-guard there is a current one to build on. handoff-guard leaves the `acct/` folders out,
-  so a pack never makes a session's handoff current.
+  so a pack never makes the packed session's handoff current. The conversation that starts from the pack is another
+  matter: when its first prompt is the line Pack & Clear or Use Latest Handoff sends, handoff-guard (0.2.3 on) records
+  the pack as that conversation's handoff until it does work
+  ([how](https://github.com/gjovanov/handoff-guard#a-conversation-that-starts-from-a-handoff)). A session crestore
+  starts from a pack is not seen that way, because its line goes in through `--append-system-prompt`.
 - **[crestore](https://github.com/gjovanov/crestore)** reopens the sessions a restart closed, one terminal tab each. With
   `-From auto` or `-From handoff` it runs `wake --json` for the plan and `wake --mode handoff --write --json` for the
   packs, and starts each pack's session with the line `wake` prints. Before a planned restart it can ask every open
